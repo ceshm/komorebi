@@ -45,7 +45,7 @@ public class DisplayManager {
         glfwPollEvents();
         glfwSwapBuffers(window);
         try {
-            sleep(100);
+            sleep(50);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
