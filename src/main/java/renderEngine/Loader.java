@@ -55,7 +55,6 @@ public class Loader {
 
     public int loadTexture(String fileName){
         Texture texture = null;
-
         try {
             //load png file
             File file = new File(fileName);
@@ -85,7 +84,6 @@ public class Loader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         assert texture != null;
         int textureID = texture.getId();
         textures.add(textureID);

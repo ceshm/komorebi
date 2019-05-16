@@ -2,7 +2,9 @@ package engineTester;
 
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
+import entity.Entity;
 import models.TexturedModel;
+import org.joml.Vector3f;
 import renderEngine.DisplayManager;
 import renderEngine.Loader;
 import models.RawModel;
@@ -43,16 +45,21 @@ public class Main {
         };
 
         RawModel model = loader.loadToVAO(vertices, textureCoords, indices);
-        ModelTexture texture = new ModelTexture(loader.loadTexture("src/main/resources/sun.png"));
+        ModelTexture texture = new ModelTexture(loader.loadTexture("src/main/resources/marble2.png"));
         TexturedModel texturedModel = new TexturedModel(model, texture);
+
+        Entity entity = new Entity(texturedModel, new Vector3f(0,0,0), 0,0,0, 1);
 
         System.out.println(model.getVaoID());
         System.out.println(model.getVertexCount());
 
         while (!glfwWindowShouldClose(window)) {
+            entity.increasePosition(0.002f, 0,0);
+            entity.increaseRotation(0,1,0);
+
             renderer.prepare();
             shader.start();
-            renderer.render(texturedModel);
+            renderer.render(entity, shader);
             shader.stop();
 
             DisplayManager.updateDisplay();

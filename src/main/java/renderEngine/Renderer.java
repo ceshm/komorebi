@@ -1,11 +1,15 @@
 package renderEngine;
 
+import entity.Entity;
 import models.RawModel;
 import models.TexturedModel;
+import org.joml.Matrix4f;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
+import shaders.StaticShader;
+import utils.Maths;
 
 /**
  * Handles the rendering of a model to the screen.
@@ -27,12 +31,17 @@ public class Renderer {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
     }
 
-    public void render(TexturedModel texturedModel) {
+    public void render(Entity entity, StaticShader shader) {
+        TexturedModel texturedModel = entity.getModel();
         RawModel model = texturedModel.getRawModel();
 
         GL30.glBindVertexArray(model.getVaoID());
         GL20.glEnableVertexAttribArray(0);
         GL20.glEnableVertexAttribArray(1);
+
+        Matrix4f transformMatrix = Maths.createTransformMatrix(entity.getPosition(), entity.getRotX(), entity.getRotY(), entity.getRotZ(), entity.getScale());
+        //System.out.println(transformMatrix);
+        shader.loadTransformationMatrix(transformMatrix);
 
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, texturedModel.getTexture().getTextureID());

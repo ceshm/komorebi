@@ -11,8 +11,8 @@ gradle-app.setting
 .gradletasknamecache
 
 
-.idea
-out
+.idea/
+out/
 
 
 # Package Files #
