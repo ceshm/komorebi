@@ -21,9 +21,9 @@ public class Main {
         long window = DisplayManager.createDisplay();
 
         Loader loader = new Loader();
-        Renderer renderer = new Renderer();
-
         StaticShader shader = new StaticShader();
+        Renderer renderer = new Renderer(shader);
+
 
         float[] vertices = {
                 -0.5f, 0.5f, 0f,
@@ -48,14 +48,14 @@ public class Main {
         ModelTexture texture = new ModelTexture(loader.loadTexture("src/main/resources/marble2.png"));
         TexturedModel texturedModel = new TexturedModel(model, texture);
 
-        Entity entity = new Entity(texturedModel, new Vector3f(0,0,0), 0,0,0, 1);
+        Entity entity = new Entity(texturedModel, new Vector3f(0,0,-1), 0,0,0, 1);
 
         System.out.println(model.getVaoID());
         System.out.println(model.getVertexCount());
 
         while (!glfwWindowShouldClose(window)) {
-            entity.increasePosition(0.002f, 0,0);
-            entity.increaseRotation(0,1,0);
+            entity.increasePosition(0, 0,-0.1f);
+            //entity.increaseRotation(0,1,0);
 
             renderer.prepare();
             shader.start();
