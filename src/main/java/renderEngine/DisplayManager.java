@@ -44,8 +44,9 @@ public class DisplayManager {
     public static void updateDisplay() {
         glfwPollEvents();
         glfwSwapBuffers(window);
+
         try {
-            sleep(50);
+            sleep(10);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -58,6 +59,10 @@ public class DisplayManager {
         // Terminate GLFW and free the error callback
         glfwTerminate();
         //glfwSetErrorCallback(null).free(); <<------------ this gives me an error for some reason
+    }
+
+    public static long getWindow(){
+        return window;
     }
 
 }
