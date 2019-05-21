@@ -17,6 +17,12 @@ import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 
+/**
+ * Display manager using GLFW for window capabilities
+ *
+ * @autor ceshm
+ *
+ */
 public class DisplayManager {
 
     private static long window;
