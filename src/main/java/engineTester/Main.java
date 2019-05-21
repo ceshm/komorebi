@@ -15,7 +15,12 @@ import textures.ModelTexture;
 
 import java.awt.*;
 
-
+/**
+ * THIS IS THE ENTRY POINT for the engine ATM
+ *
+ * @autor ceshm
+ *
+ */
 public class Main {
 
     public Main(){

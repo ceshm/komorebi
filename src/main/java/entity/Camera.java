@@ -5,6 +5,12 @@ import org.lwjgl.glfw.GLFW;
 import renderEngine.DisplayManager;
 import utils.Keyboard;
 
+/**
+ * Holds the state of the 'camera' aka the user's point of view
+ *
+ * @autor ceshm
+ *
+ */
 public class Camera {
 
     private Vector3f position = new Vector3f(0,0,0);

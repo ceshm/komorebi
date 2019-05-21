@@ -16,8 +16,12 @@ import renderEngine.DisplayManager;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-
-public class MainGameLoop {
+/**
+ * DO NOT USE THIS CLASS
+ *
+ * @autor ceshm
+ *
+ */public class MainGameLoop {
 
     public static void main(String[] args) {
         System.out.println("Hello LWJGL " + Version.getVersion() + "!");

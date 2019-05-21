@@ -3,6 +3,12 @@ package entity;
 import models.TexturedModel;
 import org.joml.Vector3f;
 
+/**
+ * Represents a 3D entity
+ *
+ * @autor ceshm
+ *
+ */
 public class Entity {
     private TexturedModel model;
     private Vector3f position;
