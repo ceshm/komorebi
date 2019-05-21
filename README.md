@@ -1,4 +1,4 @@
-# Leaf
+# Komorebi
 
 Graphics rendering engine using OpenGL bindngs provided by LWJGL 3.
 
