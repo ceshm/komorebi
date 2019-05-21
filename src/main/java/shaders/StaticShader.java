@@ -1,6 +1,8 @@
 package shaders;
 
+import entity.Camera;
 import org.joml.Matrix4f;
+import utils.Maths;
 
 public class StaticShader extends ShaderProgram{
 
@@ -11,6 +13,7 @@ public class StaticShader extends ShaderProgram{
 
     private int location_TransformationMatrix;
     private int location_ProjectionMatrix;
+    private int location_ViewMatrix;
 
     public StaticShader() {
         super(VERTEX_FILE, FRAGMENT_FILE);
@@ -20,6 +23,7 @@ public class StaticShader extends ShaderProgram{
     protected void getAllUniformLocation() {
         location_TransformationMatrix = super.getUniformLocation("transformationMatrix");
         location_ProjectionMatrix = super.getUniformLocation("projectionMatrix");
+        location_ViewMatrix = super.getUniformLocation("viewMatrix");
     }
 
     @Override
@@ -34,6 +38,11 @@ public class StaticShader extends ShaderProgram{
 
     public void loadProjectionMatrix(Matrix4f matrix){
         super.loadMatrix(location_ProjectionMatrix, matrix);
+    }
+
+    public void loadViewMatrix(Camera camera){
+        Matrix4f matrix = Maths.createViewMatrix(camera);
+        super.loadMatrix(location_ViewMatrix, matrix);
     }
 
 }

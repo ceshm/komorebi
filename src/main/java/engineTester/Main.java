@@ -2,6 +2,7 @@ package engineTester;
 
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
+import entity.Camera;
 import entity.Entity;
 import models.TexturedModel;
 import org.joml.Vector3f;
@@ -49,16 +50,18 @@ public class Main {
         TexturedModel texturedModel = new TexturedModel(model, texture);
 
         Entity entity = new Entity(texturedModel, new Vector3f(0,0,-1), 0,0,0, 1);
+        Camera camera = new Camera();
 
-        System.out.println(model.getVaoID());
-        System.out.println(model.getVertexCount());
+        //System.out.println(model.getVaoID());
+        //System.out.println(model.getVertexCount());
 
         while (!glfwWindowShouldClose(window)) {
-            entity.increasePosition(0, 0,-0.1f);
+            //entity.increasePosition(0, 0,-0.1f);
             //entity.increaseRotation(0,1,0);
-
+            camera.move();
             renderer.prepare();
             shader.start();
+            shader.loadViewMatrix(camera);
             renderer.render(entity, shader);
             shader.stop();
 
