@@ -4,6 +4,7 @@ import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
 import entity.Camera;
 import entity.Entity;
+import entity.Light;
 import models.TexturedModel;
 import org.joml.Vector3f;
 import renderEngine.DisplayManager;
@@ -31,14 +32,14 @@ public class Main {
         StaticShader shader = new StaticShader();
         Renderer renderer = new Renderer(shader);
 
-
         //RawModel model = loader.loadToVAO(vertices, textureCoords, indices);
-        RawModel model = OBJLoader.loadModel("stall", loader);
+        RawModel model = OBJLoader.loadModel("dragon", loader);
 
         ModelTexture texture = new ModelTexture(loader.loadTexture("src/main/resources/stallTexture.png"));
         TexturedModel texturedModel = new TexturedModel(model, texture);
 
         Entity entity = new Entity(texturedModel, new Vector3f(0,-1.5f,-25), 0,0,0, 1);
+        Light light = new Light(new Vector3f(0,0,-20), new Vector3f(1,1,1));
         Camera camera = new Camera();
 
         //System.out.println(model.getVaoID());
@@ -50,6 +51,7 @@ public class Main {
             camera.move();
             renderer.prepare();
             shader.start();
+            shader.loadLight(light);
             shader.loadViewMatrix(camera);
             renderer.render(entity, shader);
             shader.stop();

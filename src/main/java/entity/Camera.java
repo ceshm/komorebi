@@ -20,7 +20,7 @@ public class Camera {
 
     public Camera(){
         Keyboard keyboard = new Keyboard();
-        GLFW.glfwSetKeyCallback(DisplayManager.getWindow() , keyboard::invoke);
+        GLFW.glfwSetKeyCallback(DisplayManager.getWindow(), keyboard::invoke);
     }
 
     public void move() {
