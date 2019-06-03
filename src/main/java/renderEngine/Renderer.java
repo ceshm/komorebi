@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import shaders.StaticShader;
+import textures.ModelTexture;
 import utils.Maths;
 
 import java.nio.IntBuffer;
@@ -63,6 +64,7 @@ public class Renderer {
         Matrix4f transformMatrix = Maths.createTransformMatrix(entity.getPosition(), entity.getRotX(), entity.getRotY(), entity.getRotZ(), entity.getScale());
         //System.out.println(transformMatrix);
         shader.loadTransformationMatrix(transformMatrix);
+        shader.loadShine(texturedModel.getTexture().getShineDamper(), texturedModel.getTexture().getReflectivity());
 
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, texturedModel.getTexture().getTextureID());
