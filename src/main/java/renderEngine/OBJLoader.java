@@ -38,7 +38,7 @@ public class OBJLoader {
         int[] indicesArray = null;
         try {
             while (true) {
-                line = reader.readLine();
+                line = reader.readLine().replaceAll(" +", " ");
                 String[] currentLine = line.split(" ");
                 if (line.startsWith("v ")) {
                     Vector3f vertex = new Vector3f(Float.parseFloat(currentLine[1]), Float.parseFloat(currentLine[2]), Float.parseFloat(currentLine[3]));
@@ -55,6 +55,7 @@ public class OBJLoader {
                     break;
                 }
             }
+
 
             while (line != null) {
                 if (!line.startsWith("f ")) {
@@ -102,10 +103,11 @@ public class OBJLoader {
                                       List<Vector3f> normals,
                                       float[] textureArray,
                                       float[] normalsArray) {
-        int currentVertexPointer = Integer.parseInt(vertexData[0]) - 1;
+
+        int currentVertexPointer = vertexData[0].equals("") ? 0 : Integer.parseInt(vertexData[0]) - 1;
         indices.add(currentVertexPointer);
 
-        Vector2f currentTex = textures.get(Integer.parseInt(vertexData[1]) - 1);
+        Vector2f currentTex = textures.get(vertexData[1].equals("") ? 0 : Integer.parseInt(vertexData[1]) - 1);
         textureArray[currentVertexPointer * 2] = currentTex.x;
         textureArray[currentVertexPointer * 2 + 1] = 1 - currentTex.y;
 

@@ -37,9 +37,11 @@ public class Main {
 
         ModelTexture texture = new ModelTexture(loader.loadTexture("src/main/resources/stallTexture.png"));
         TexturedModel texturedModel = new TexturedModel(model, texture);
+        texture.setShineDamper(10);
+        texture.setReflectivity(1);
 
         Entity entity = new Entity(texturedModel, new Vector3f(0,-1.5f,-25), 0,0,0, 1);
-        Light light = new Light(new Vector3f(0,0,-20), new Vector3f(1,1,1));
+        Light light = new Light(new Vector3f(0,10,0), new Vector3f(1,1,1));
         Camera camera = new Camera();
 
         //System.out.println(model.getVaoID());
