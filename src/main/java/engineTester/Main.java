@@ -7,15 +7,14 @@ import entity.Entity;
 import entity.Light;
 import models.TexturedModel;
 import org.joml.Vector3f;
-import renderEngine.DisplayManager;
-import renderEngine.Loader;
+import renderEngine.*;
 import models.RawModel;
-import renderEngine.OBJLoader;
-import renderEngine.Renderer;
 import shaders.StaticShader;
 import textures.ModelTexture;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * THIS IS THE ENTRY POINT for the engine ATM
@@ -29,8 +28,6 @@ public class Main {
         long window = DisplayManager.createDisplay();
 
         Loader loader = new Loader();
-        StaticShader shader = new StaticShader();
-        Renderer renderer = new Renderer(shader);
 
         //RawModel model = loader.loadToVAO(vertices, textureCoords, indices);
         RawModel model = OBJLoader.loadModel("dragon", loader);
@@ -40,28 +37,40 @@ public class Main {
         texture.setShineDamper(10);
         texture.setReflectivity(1);
 
-        Entity entity = new Entity(texturedModel, new Vector3f(0,-1.5f,-25), 0,0,0, 1);
+
+        ArrayList<Entity> entities = new ArrayList<Entity>();
+        Random rng = new Random();
+        for (int i = 0; i < 20; i++) {
+            entities.add(new Entity(
+                    texturedModel,
+                    new Vector3f(
+                            rng.nextFloat() * 50 - 25,
+                            rng.nextFloat() * 50 - 25,
+                            rng.nextFloat() * -150),
+                    rng.nextFloat() * 180f,
+                    rng.nextFloat() * 180f,
+                    0f,
+                    1f
+            ));
+        }
+
         Light light = new Light(new Vector3f(0,10,0), new Vector3f(1,1,1));
         Camera camera = new Camera();
 
-        //System.out.println(model.getVaoID());
-        //System.out.println(model.getVertexCount());
+        //Entity entity = new Entity(texturedModel, new Vector3f(0,-1.5f,-25), 0,0,0, 1);
+
+        MasterRenderer renderer = new MasterRenderer();
 
         while (!glfwWindowShouldClose(window)) {
             //entity.increasePosition(0, 0,-0.1f);
-            entity.increaseRotation(0,0.5f,0);
+            //entity.increaseRotation(0,0.5f,0);
             camera.move();
-            renderer.prepare();
-            shader.start();
-            shader.loadLight(light);
-            shader.loadViewMatrix(camera);
-            renderer.render(entity, shader);
-            shader.stop();
-
+            entities.forEach(renderer::processEntity);
+            renderer.render(light, camera);
             DisplayManager.updateDisplay();
         }
 
-        shader.cleanUp();
+        renderer.cleanUp();
         loader.cleanUp();
         DisplayManager.closeDisplay();
     }

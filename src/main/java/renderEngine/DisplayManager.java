@@ -29,6 +29,7 @@ public class DisplayManager {
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 720;
     private static final String TITLE = "Leaf";
+    private static final int FPS_CAP = 120;
 
     public static long createDisplay() {
         if(!glfwInit()){
@@ -44,18 +45,15 @@ public class DisplayManager {
         glfwShowWindow(window);
         GL.createCapabilities();
 
+        // this turns vsync on ???
+        glfwSwapInterval(1);
+
         return window;
     }
 
     public static void updateDisplay() {
         glfwPollEvents();
         glfwSwapBuffers(window);
-
-        try {
-            sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void closeDisplay() {

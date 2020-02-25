@@ -78,7 +78,6 @@ public abstract class ShaderProgram {
         GL20.glUniformMatrix4fv(location, false, matrixBuffer);
     }
 
-
     private static int loadShader(String file, int type) {
         StringBuilder shaderSource = new StringBuilder();
         try {

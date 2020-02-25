@@ -17,6 +17,7 @@ public class Camera {
     private float pitch;
     private float yaw;
     private float roll;
+    private static float SENSITIVITY = 25;
 
     public Camera(){
         Keyboard keyboard = new Keyboard();
@@ -25,16 +26,16 @@ public class Camera {
 
     public void move() {
         if (Keyboard.isKeyDown(GLFW.GLFW_KEY_W)) {
-            position.z -= 0.02f;
+            position.z -= 0.02f*SENSITIVITY;
         }
         if (Keyboard.isKeyDown(GLFW.GLFW_KEY_D)) {
-            position.x += 0.02f;
+            position.x += 0.02f*SENSITIVITY;
         }
         if (Keyboard.isKeyDown(GLFW.GLFW_KEY_A)) {
-            position.x -= 0.02f;
+            position.x -= 0.02f*SENSITIVITY;
         }
         if (Keyboard.isKeyDown(GLFW.GLFW_KEY_S)) {
-            position.z += 0.02f;
+            position.z += 0.02f*SENSITIVITY;
         }
     }
 
