@@ -99,36 +99,6 @@ public class Renderer {
         shader.loadTransformationMatrix(transformMatrix);
     }
 
-    @Deprecated
-    public void render(Entity entity, StaticShader shader) {
-        TexturedModel texturedModel = entity.getModel();
-        RawModel model = texturedModel.getRawModel();
-
-        // bind the entity model
-        GL30.glBindVertexArray(model.getVaoID());
-        GL20.glEnableVertexAttribArray(0);
-        GL20.glEnableVertexAttribArray(1);
-        GL20.glEnableVertexAttribArray(2);
-
-        Matrix4f transformMatrix = Maths.createTransformMatrix(entity.getPosition(), entity.getRotX(), entity.getRotY(), entity.getRotZ(), entity.getScale());
-        //System.out.println(transformMatrix);
-        shader.loadTransformationMatrix(transformMatrix);
-
-        // shine settings
-        shader.loadShine(texturedModel.getTexture().getShineDamper(), texturedModel.getTexture().getReflectivity());
-
-        // bind the entity texture
-        GL13.glActiveTexture(GL13.GL_TEXTURE0);
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, texturedModel.getTexture().getTextureID());
-        GL11.glDrawElements(GL11.GL_TRIANGLES, model.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
-
-        // unbind stuff
-        GL20.glDisableVertexAttribArray(0);
-        GL20.glDisableVertexAttribArray(1);
-        GL20.glDisableVertexAttribArray(2);
-        GL30.glBindVertexArray(0);
-    }
-
     private void createProjectionMatrix(){
         //float aspectRatio = (float) DisplayManager.get / (float) Display.getHeight();
         IntBuffer w = BufferUtils.createIntBuffer(4);

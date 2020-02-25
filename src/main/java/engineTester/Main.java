@@ -9,6 +9,7 @@ import models.TexturedModel;
 import org.joml.Vector3f;
 import renderEngine.*;
 import models.RawModel;
+
 import shaders.StaticShader;
 import textures.ModelTexture;
 
@@ -71,6 +72,7 @@ public class Main {
         }
 
         renderer.cleanUp();
+
         loader.cleanUp();
         DisplayManager.closeDisplay();
     }
