@@ -2,6 +2,17 @@
 
 OpenGL graphics engine using LWJGL3 and GLFW.
 
+## Dependencies
+Included in the build.gradle file:
+- LWJGL Minimal OpenGL preset from https://www.lwjgl.org/customize:
+    - LWJGL core
+    - Assimp
+    - GLWF
+    - OpenAL & OpenGL
+    - stb
+    - [JOML](https://github.com/JOML-CI/JOML) (addon option)
+- [l33tlabs' pngdecoder](https://github.com/iamtakingiteasy/org.l33tlabs.twl.pngdecoder)
+
 
 ## Testing
 
