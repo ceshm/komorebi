@@ -5,7 +5,6 @@ import renderEngine.Loader;
 import textures.ModelTexture;
 
 public class Terrain {
-
     private static final float SIZE = 800;
     private static final int VERTEX_COUNT = 128;
 
@@ -54,7 +53,7 @@ public class Terrain {
     }
 
     /**
-     * Pre-coded by ThinMatrix
+     * Karl's magical function for terrain generation
      * sauce: https://www.dropbox.com/s/47qk4yrz5v9lb61/Terrain%20Generation%20Code.txt?dl=0
      */
     private RawModel generateTerrain(Loader loader) {

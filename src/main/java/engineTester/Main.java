@@ -11,6 +11,7 @@ import renderEngine.*;
 import models.RawModel;
 
 import shaders.StaticShader;
+import terrains.Terrain;
 import textures.ModelTexture;
 
 import java.awt.*;
@@ -31,17 +32,16 @@ public class Main {
         Loader loader = new Loader();
 
         //RawModel model = loader.loadToVAO(vertices, textureCoords, indices);
-        RawModel model = OBJLoader.loadModel("dragon", loader);
-
+        RawModel model = OBJLoader.loadModel("stall", loader);
         ModelTexture texture = new ModelTexture(loader.loadTexture("src/main/resources/stallTexture.png"));
         TexturedModel texturedModel = new TexturedModel(model, texture);
         texture.setShineDamper(10);
         texture.setReflectivity(1);
 
-
+        /*
         ArrayList<Entity> entities = new ArrayList<Entity>();
         Random rng = new Random();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 2; i++) {
             entities.add(new Entity(
                     texturedModel,
                     new Vector3f(
@@ -53,20 +53,30 @@ public class Main {
                     0f,
                     1f
             ));
-        }
+        }*/
 
-        Light light = new Light(new Vector3f(0,10,0), new Vector3f(1,1,1));
-        Camera camera = new Camera();
+        //Light light = new Light(new Vector3f(0,10,0), new Vector3f(1,1,1));
+        Light light = new Light(new Vector3f(2000,2000,2000), new Vector3f(1,1,1));
 
-        //Entity entity = new Entity(texturedModel, new Vector3f(0,-1.5f,-25), 0,0,0, 1);
+        Camera camera = new Camera(100);
+
+        Entity entity = new Entity(texturedModel, new Vector3f(0,-1.5f,-25), 0,0,0, 1);
+        Terrain terrain = new Terrain(-1,-1,loader, new ModelTexture(loader.loadTexture("src/main/resources/grass.png")));
+        Terrain terrain2 = new Terrain(0,-1,loader, new ModelTexture(loader.loadTexture("src/main/resources/grass.png")));
 
         MasterRenderer renderer = new MasterRenderer();
 
         while (!glfwWindowShouldClose(window)) {
             //entity.increasePosition(0, 0,-0.1f);
-            //entity.increaseRotation(0,0.5f,0);
+            entity.increaseRotation(0,0.5f,0);
+
             camera.move();
-            entities.forEach(renderer::processEntity);
+
+            renderer.processTerrain(terrain);
+            renderer.processTerrain(terrain2);
+            //entities.forEach(renderer::processEntity);
+            renderer.processEntity(entity);
+
             renderer.render(light, camera);
             DisplayManager.updateDisplay();
         }

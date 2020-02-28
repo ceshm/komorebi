@@ -29,7 +29,7 @@ import static org.lwjgl.glfw.GLFW.*;
         long window = DisplayManager.createDisplay();
 /*
         Loader loader = new Loader();
-        Renderer renderer = new Renderer();
+        EntityRenderer renderer = new EntityRenderer();
 
         float[] vertices = {
                 -0.5f, 0.5f, 0f,//v0
