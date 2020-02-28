@@ -20,4 +20,5 @@ The camera class is configured for this key input:
 
 The design is based on [ThinMatrix's](https://www.youtube.com/user/ThinMatrix) tutorials.
 Modifications have been made for the newest versions of LWJGL and the addition of GLFW 
-for handling window and keyboard related stuff. Further changes in the design are expected.
+for handling window and keyboard related events. 
+Further changes in the design are expected.
