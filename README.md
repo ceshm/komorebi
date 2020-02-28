@@ -1,6 +1,6 @@
 # Komorebi
 
-OpenGL graphics rendering engine using LWJGL3 and GLFW.
+OpenGL rendering engine using LWJGL3 and GLFW.
 
 
 ## Testing
