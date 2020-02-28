@@ -18,5 +18,6 @@ The camera class is configured for this key input:
 
 ## Credit
 
-The design is based on [ThinMatrix's](https://www.youtube.com/user/ThinMatrix) tutorials, 
-but updated to use earlier versions of the libraries used.
+The design is based on [ThinMatrix's](https://www.youtube.com/user/ThinMatrix) tutorials.
+Modifications have been made for the newest versions of LWJGL and the addition of GLFW 
+for handling window and keyboard related stuff. Further changes in the design are expected.
