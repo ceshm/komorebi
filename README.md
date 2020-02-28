@@ -9,7 +9,7 @@ OpenGL graphics rendering engine using LWJGL3 and GLFW.
 engineTester > Main
 
 #### Camera movements
-The camera class is configured.
+The camera class is configured for this key input:
 - W, S: z axis
 - A, D: x axis
 - Space, Tab: y axis
