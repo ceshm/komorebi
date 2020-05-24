@@ -3,7 +3,8 @@ package shaders;
 import entity.Camera;
 import entity.Light;
 import org.joml.Matrix4f;
-import utils.Maths;
+
+import static utils.MathKt.createViewMatrix;
 
 public class TerrainShader extends ShaderProgram {
     private static final String VERTEX_FILE = "src/main/java/shaders/terrainVertexShader.vert";
@@ -49,7 +50,7 @@ public class TerrainShader extends ShaderProgram {
     }
 
     public void loadViewMatrix(Camera camera){
-        Matrix4f matrix = Maths.createViewMatrix(camera);
+        Matrix4f matrix = createViewMatrix(camera);
         super.loadMatrix(location_ViewMatrix, matrix);
     }
 

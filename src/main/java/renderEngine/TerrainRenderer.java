@@ -12,9 +12,10 @@ import org.lwjgl.opengl.GL30;
 import shaders.TerrainShader;
 import terrains.Terrain;
 import textures.ModelTexture;
-import utils.Maths;
 
 import java.util.List;
+
+import static utils.MathKt.createTransformMatrix;
 
 public class TerrainRenderer {
     private TerrainShader shader;
@@ -62,7 +63,7 @@ public class TerrainRenderer {
     }
 
     public void loadModelMatrix(Terrain terrain){
-        Matrix4f transformMatrix = Maths.createTransformMatrix(new Vector3f(terrain.getX(),0,terrain.getZ()), 0,0,0, 1);
+        Matrix4f transformMatrix = createTransformMatrix(new Vector3f(terrain.getX(),0,terrain.getZ()), 0,0,0, 1);
         shader.loadTransformationMatrix(transformMatrix);
     }
 

@@ -4,19 +4,18 @@ import entity.Entity;
 import models.RawModel;
 import models.TexturedModel;
 import org.joml.Matrix4f;
-import org.lwjgl.BufferUtils;
-import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import shaders.StaticShader;
 import textures.ModelTexture;
-import utils.Maths;
 
-import java.nio.IntBuffer;
 import java.util.HashMap;
 import java.util.List;
+
+import static utils.MathKt.createTransformMatrix;
+
 
 /**
  * Handles the rendering of a model to the screen.
@@ -72,7 +71,7 @@ public class EntityRenderer {
     }
 
     public void prepareInstance(Entity entity){
-        Matrix4f transformMatrix = Maths.createTransformMatrix(entity.getPosition(), entity.getRotX(), entity.getRotY(), entity.getRotZ(), entity.getScale());
+        Matrix4f transformMatrix = createTransformMatrix(entity.getPosition(), entity.getRotX(), entity.getRotY(), entity.getRotZ(), entity.getScale());
         shader.loadTransformationMatrix(transformMatrix);
     }
 
